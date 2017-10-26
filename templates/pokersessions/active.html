@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+<form action="{% url 'pokersessions:active' %}" method="post" class='form-signin'>
+  <h2 class='form-signin-heading'>Active Session</h2>
+{% csrf_token %}
+{{ form.as_p }}
+<button class="btn btn-primary btn-block" name="add_update" value="1" type="submit">Add Session Update</button>
+<button class="btn btn-primary btn-block" name="end_update" value="1" type="submit">Add Session Update and End</button>
+</form>
+</p>
+<p>
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Chip Stack</th>
+    <th>Buy In</th>
+    <th>Comment</th>
+    <th>Edit</th>
+  </tr>
+{% for update in active_session.session_updates %}
+  <tr>
+    <td>{{ update.time }}</td>
+    <td>{{ update.chip_stack }}</td>
+    <td>{{ update.buy_in }}</td>
+    <td>{{ update.comment }}</td>
+    <td>Edit</td>
+  </tr>
+{% endfor %}
+</table>
+</p>
+{% endblock %}

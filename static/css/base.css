@@ -1,0 +1,245 @@
+* {
+	margin: 0;
+	padding: 0;
+	
+	box-sizing: border-box;
+	
+	--primary-color:#5D5C61;
+	--secondary-color:#73958A;
+	--background-color:#557A95;
+	--accent-color2: #8D8741;
+	--accent-color3: #BDBEA9;
+	--nav-bg: var(--primary-color);
+}
+
+/* grid */
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  grid-template-areas: 
+    "header"
+    "content"
+    "footer";
+}
+
+html {
+	background: var(--background-color);
+}
+
+/* items */
+.container > * {
+  color: #353535;
+  font-size: 1.2em;
+  line-height: 1.5;
+  padding: 20px;
+  background: var(--secondary-color);
+}
+
+.container header {
+	grid-area: header;
+	border-radius: 15px;
+}
+
+.container nav {
+	grid-area: nav;
+	padding: 0;
+	background: var(--nav-bg);
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.container footer {
+	grid-area: footer;
+	border-radius: 15px;
+}
+
+.container section {
+	grid-area: content;
+	border-radius: 15px;
+}
+
+/* Acordeon styles */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  color: #fff;
+  overflow: hidden;
+}
+
+input.nav-tab {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.nav-item  {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background: var(--nav-bg);
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+}
+
+.nav-item a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #fff;
+}
+
+.nav-item:hover, .nav-item a:hover {
+	background: #c0c0c0;
+}
+
+nav div div{
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+  background: #3498db;
+}
+nav div div p {
+  margin: 1em;
+}
+/* :checked */
+input:checked ~ div {
+  max-height: 10em;
+}
+/* Icon */
+label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+
+input[type=radio] + label::after {
+  content: "\25BC";
+}
+
+input[type=radio]:checked + label::after {
+  transform: rotateX(180deg);
+}
+
+/* FORM STUFF */
+
+.form-vertical {
+	background: var(--primary-color);
+	border-radius: 15px;
+	padding: 1em;
+	width: 15em;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	
+	align-items: center;
+  justify-content: center;
+}
+
+.form-vertical p {
+	align: center;
+	width: 100%;
+	margin: auto;
+	min-width: 8em;
+}
+
+.form-vertical p input[type=email],
+.form-vertical p input[type=password],
+.form-vertical p input[type=number],
+.form-vertical p select{
+	border-radius: 5px;
+	border: 0;
+	padding: 1em;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.form-vertical button {
+	width: 100%;
+	border:0;
+	background: var(--accent-color1);
+	padding: 1em;
+	border-radius: 5px;
+}
+
+
+.form-vertical button:hover {
+	filter: brightness(85%);
+}
+
+/*Messages Custom CSS*/
+
+.alert {
+	width: 100%;
+	margin-bottom: 1px;
+	border-radius: 5px;
+	visibility: 100%;
+}
+
+.alert-success {
+	background: green;
+}
+
+.alert-error {
+	background: red;
+}
+
+.alert-close {
+	height: 0px;
+	transition: all 5s ease-in-out;
+}
+
+/* media query for grid layout */
+@media only screen and (min-width: 800px) {
+    
+  /* grid */
+  .container {
+    grid-template-columns: auto 300px minmax(auto,1200px) auto;
+		grid-template-areas: 
+    	"lside nav header rside"
+			"lside nav content rside"
+    	"lside nav footer rside";
+  }
+  
+  /* hide toggle */
+  .toggle {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+	#nav {
+		transition: transform .3s ease-in-out;
+		top: 0;
+		bottom: 0;   
+		min-height: 100vh; /* override Safari bug */
+		position: fixed; /* or choose `absolute` depending on desired behavior*/
+		width: 300px;
+		left: -340px;
+	}
+
+	.nav-open {     
+		transform: translateX(340px);
+	}
+
+	.close {
+		text-align: right;
+		display: block;
+		text-decoration: none;
+		font-size: 3em;
+		position: relative;
+		top: -30px;
+	}
+	
+}

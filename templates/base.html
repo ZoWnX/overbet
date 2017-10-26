@@ -1,0 +1,92 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<script src="https://use.fontawesome.com/5e71f684bb.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
+  <body>
+		<div class="container">
+
+			<header role="banner">
+				<a class="toggle open" id="nav-open" href="#nav">open</a>
+				<h1>OVERBET.io</h1>
+			</header>
+
+			<nav id="nav" role="navigation">
+				<a id="nav-close" class="toggle close" href="#">×</a>
+				
+				<div class="nav-item tab">
+					<a href="{% url 'index' %}">Home</a>
+				</div>
+				{% if user.is_authenticated %}
+				<div class="tab">
+					<input id="nav-tab-one" type="radio" name="nav-tabs" class="nav-tab">
+					<label for="nav-tab-one" class="nav-item"><a>Poker Sessions</a></label>
+					<div class="nav-item"><a href="{% url 'pokersessions:start' %}">Start New Session</a></div>
+					<div class="nav-item"><a href="{% url 'pokersessions:list' %}">List All Sessions</a></div>
+				</div>
+				<div class="nav-item tab">
+					<a href="{% url 'users:logout' %}">Logout</a>
+				</div>
+				{% else %}
+				<div class="nav-item tab">
+					<a href="{% url 'users:login' %}">Login</a>
+				</div>
+				<div class="nav-item tab">
+					<a href="{% url 'users:register' %}">Register</a>
+				</div>
+				<div class="tab">
+					<input id="nav-tab-two" type="radio" name="nav-tabs" class="nav-tab">
+					<label for="nav-tab-two" class="nav-item"><a>Label One</a></label>
+					<div class="nav-item"><a>Test 2</a></div>
+					<div class="nav-item"><a>Test 2</a></div>
+					<div class="nav-item"><a>Test 2</a></div>
+				</div>
+				{% endif %}
+			</nav>
+
+			<section class="content" role="main">
+				<!--
+				{% for message in messages %}
+    		<div class="alert alert-{{ message.tags }}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+				{{ message }}					
+				</div>
+				{% endfor %}
+				-->
+				{% block content %}
+				{% endblock %}
+			</section>
+
+			<footer>
+				<h3>&copy; 2017 Joshua W Julian</h3>
+			</footer>
+		</div><!-- container -->
+		<script>	
+			document.getElementById("nav-open").addEventListener("click", function() {
+				document.getElementById("nav").classList.add("nav-open");
+			});
+			
+			document.getElementById("nav-close").addEventListener("click", function() {
+				document.getElementById("nav").classList.remove("nav-open");
+			});
+			
+			var alerts = document.getElementsByClassName("alert");
+			var i;
+			
+			var alert_close = function () {
+				this.classList.add("alert-close");
+			}
+			for (i = 0; i < alerts.length; i++) {
+    		alerts[i].addEventListener("click", alert_close, false);
+			}
+		{% block js %}{% endblock %}
+		</script>
+  </body>
+</html>
