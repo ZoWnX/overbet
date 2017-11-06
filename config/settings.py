@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
+    'djangoformsetjs',
     'utils.apps.UtilsConfig',
     'users.apps.UsersConfig',
     'currencies.apps.CurrenciesConfig',

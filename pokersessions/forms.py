@@ -25,8 +25,8 @@ class StartPokerSessionForm(forms.Form):
     label="Buy in"
   )
 	is_cash = forms.BooleanField(label='Cash Game')
-	
-class PokerSessionUpdateForm(forms.Form):	
+
+class PokerSessionUpdateForm(forms.Form):
 	buy_in = forms.DecimalField(
   	max_digits=15,
     decimal_places=2,
@@ -39,16 +39,12 @@ class PokerSessionUpdateForm(forms.Form):
     required=False,
     label="Chip Stack"
   )
-	comment = forms.CharField( 
-		widget=forms.Textarea,
-		required=False
-	)
-	
+
 class PokerSessionUpdateEditForm(forms.ModelForm):
 	class Meta:
 		model= PokerSessionUpdate
-		fields = {"time", "comment", 'buy_in', "chip_stack"}
-	
+		fields = {"time", 'buy_in', "chip_stack"}
+
 class PokerSessionForm(forms.ModelForm):
 	class Meta:
 		model = PokerSession

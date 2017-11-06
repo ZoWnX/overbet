@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<script src="https://use.fontawesome.com/5e71f684bb.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 		<link rel="stylesheet" href="{% static 'css/base.css' %}" />
@@ -18,7 +18,7 @@
 
 			<nav id="nav" role="navigation">
 				<a id="nav-close" class="toggle close" href="#">×</a>
-				
+
 				<div class="nav-item tab">
 					<a href="{% url 'index' %}">Home</a>
 				</div>
@@ -50,16 +50,16 @@
 			</nav>
 
 			<section class="content" role="main">
-				<!--
+
 				{% for message in messages %}
     		<div class="alert alert-{{ message.tags }}">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     			<span aria-hidden="true">&times;</span>
   			</button>
-				{{ message }}					
+				{{ message }}
 				</div>
 				{% endfor %}
-				-->
+
 				{% block content %}
 				{% endblock %}
 			</section>
@@ -68,25 +68,26 @@
 				<h3>&copy; 2017 Joshua W Julian</h3>
 			</footer>
 		</div><!-- container -->
-		<script>	
+    <script src="{% static "js/jquery.js" %}"></script>
+		<script>
 			document.getElementById("nav-open").addEventListener("click", function() {
 				document.getElementById("nav").classList.add("nav-open");
 			});
-			
+
 			document.getElementById("nav-close").addEventListener("click", function() {
 				document.getElementById("nav").classList.remove("nav-open");
 			});
-			
+
 			var alerts = document.getElementsByClassName("alert");
 			var i;
-			
+
 			var alert_close = function () {
 				this.classList.add("alert-close");
 			}
 			for (i = 0; i < alerts.length; i++) {
     		alerts[i].addEventListener("click", alert_close, false);
 			}
-		{% block js %}{% endblock %}
 		</script>
+    {% block js %}{% endblock %}
   </body>
 </html>
