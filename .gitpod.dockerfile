@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y \
 USER gitpod
 # Apply user-specific settings
 #ENV ...
-RUN yarn global add @vue/cli sass
+RUN npm install -g @vue/cli sass
 # Give back control
 USER root
